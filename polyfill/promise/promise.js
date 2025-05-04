@@ -41,6 +41,7 @@ class MyPromise {
 
     if (typeof value === MyPromise) {
       value.then(this.#onSuccess, this.#onFail);
+      return;
     }
 
     this.#state = STATES.SUCCESS;
@@ -79,7 +80,7 @@ class MyPromise {
   }
 
   catch(cb) {
-    this.then(null, cb);
+    return this.then(null, cb);
   }
 
   finally(cb) {
